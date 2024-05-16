@@ -5,6 +5,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { styles } from './App.style';
+import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 const url = 'https://randomuser.me/api/?results=10';
 
@@ -74,7 +82,7 @@ const UserTable = () => {
   }, []);
 
   return (
-    <table border={1}>
+    <Table striped bordered hover>
       <thead>
         <tr>
           <th>No</th>
@@ -92,9 +100,15 @@ const UserTable = () => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 class App extends Component {
   constructor() {
@@ -123,35 +137,43 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1
+          className="userTable"
+          id="table"
+          style={{
+            color: 'green',
+            ...styles.title,
+            ...styles.spacing,
+          }}
+        >
+          Table User
+        </h1>
+        <Container fluid>
+          <Row>
+            <Col>
+              <h5>Hello</h5>
+            </Col>
+            <Col>
+              <h5>World</h5>
+            </Col>
+          </Row>
+        </Container>
+        <Card style={{ width: '18rem' }}>
+          <Card.Img
+            variant="top"
+            src="holder.js/100px180"
+          />
+          <Card.Body>
+            <Card.Title>Card Title</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card
+              title and make up the bulk of the card's
+              content.
+            </Card.Text>
+            <Button variant="warning">Go somewhere</Button>
+          </Card.Body>
+        </Card>
         <UserTable />
-        {/* <h1>Hello world</h1>
-        <h1>count: {this.state.count}</h1>
-        <button
-          onClick={() =>
-            this.setState({ count: this.state.count + 1 })
-          }
-        >
-          +
-        </button>
-        <button
-          onClick={() =>
-            this.setState({ count: this.state.count - 1 })
-          }
-        >
-          -
-        </button>
-        <h1>{this.state.name}</h1>
-        <button
-          onClick={() => this.setState({ name: 'Rahmat' })}
-        >
-          Rahmat
-        </button>
-        {this.state.count % 2 === 0 ? null : (
-          <BigRedSquare />
-        )} */}
-        {/* {this.state.users.map((el) => (
-          <UserCard user={el} />
-        ))} */}
       </div>
     );
   }
